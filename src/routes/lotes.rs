@@ -43,7 +43,7 @@ pub async fn route_functions_lotes(request: Query) -> Result<Vec<Lote>, RequestE
                 Ok(data) => Ok(data),
                 Err(err) => Err(err),
             }
-        }
+        },
         _ => {
             let action_err = request.action;
             return Err(RequestError::new(

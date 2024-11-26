@@ -1,5 +1,7 @@
 
 
+use std::time::Instant;
+
 use tokio::{
     io::{AsyncReadExt, AsyncWriteExt},
     net::TcpStream,
@@ -36,6 +38,7 @@ pub async fn handle_connection(mut socket: TcpStream) -> Result<(), ServerError>
 
         let request = String::from_utf8_lossy(&buf[..n]);
 
+        let inicio = Instant::now();
         // Procesar los datos leídos
         match serde_request(&request).await {
             Ok(request) => {
@@ -75,6 +78,8 @@ pub async fn handle_connection(mut socket: TcpStream) -> Result<(), ServerError>
                         }
 
                         // Continuar esperando más datos
+                        let duracion = inicio.elapsed();
+                        println!("La función tomó: {:?}", duracion);
                         continue;
                     }
                     Err(write_err) => {

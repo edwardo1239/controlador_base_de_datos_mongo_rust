@@ -71,7 +71,7 @@ pub async fn route_request(request: Query) -> Result<ApiResponse, RequestError> 
             Err(err) => Err(err),
         },
         "variables_del_sistema" => match routes_variables_sistema(request).await {
-            Ok(data) => Ok(ApiResponse::InventarioFrutaSinProcesar(data)),
+            Ok(data) => Ok(ApiResponse::VariablesDelSistema(data)),
             Err(err) => Err(err),
         },
         _ => Err(RequestError::new(

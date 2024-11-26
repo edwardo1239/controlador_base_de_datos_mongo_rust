@@ -1,4 +1,4 @@
-use std::time::{Duration, Instant};
+use std::time::Instant;
 
 use mongodb::{
     bson::{doc, from_document, oid::ObjectId, Document},
@@ -117,14 +117,12 @@ pub async fn get_lotes(options: GetLotesOptions) -> Result<Vec<Lote>, RequestErr
 
     let inicio = Instant::now();
 
-    let max_await_time = Duration::from_millis(50); // 50 milisegundos
 
     let mut cursor = match collection
         .aggregate(pipeline)
         .hint(Hint::Keys(
             doc! { "fechaCreacion": 1, "_id": 1, "predios": 1 },
-        )).max_time(max_await_time)
-        .await
+        )).await
     {
         Ok(cursor) => cursor,
         Err(err) => {
