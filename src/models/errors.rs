@@ -75,7 +75,8 @@ pub enum RequestErrorKind {
     DatabaseError(String), // Error de base de datos
     ReadError, // Error al leer el archivo
     WriteError,
-    DeserializeError
+    DeserializeError,
+    NotFound
 
 }
 

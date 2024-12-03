@@ -6,7 +6,7 @@ use crate::{
     controllers::handle_request::Query,
     models::errors::{RequestError, RequestErrorKind},
     read::variables_sistema::get_inventario,
-    write::variables_sistema::ingresar_inventario,
+    write::variables_sistema::{ingresar_inventario, modificar_inventario},
 };
 
 pub async fn routes_variables_sistema(
@@ -18,10 +18,6 @@ pub async fn routes_variables_sistema(
             Ok(data) => Ok(data),
             Err(err) => Err(err),
         },
-        // "generar_ef1" => match generar_ef1_serial().await {
-        //     Ok(enf) => Ok(enf),
-        //     Err(err) => Err(err),
-        // },
         "ingresar_inventario" => match ingresar_inventario(request).await {
             Ok(_) => {
                 let mut response = HashMap::new();
@@ -31,6 +27,15 @@ pub async fn routes_variables_sistema(
             }
             Err(err) => Err(err),
         },
+        "modificar_inventario" => match modificar_inventario(request).await {
+            Ok(_) => {
+                let mut response = HashMap::new();
+                response.insert("status".to_string(), Value::String("200".to_string()));
+                response.insert("message".to_string(), Value::String("Ok".to_string()));
+                Ok(response)
+            }
+            Err(err) => Err(err),
+        }
         _ => {
             let action_err = request.action;
             return Err(RequestError::new(

@@ -176,6 +176,9 @@ pub struct Lote {
     #[serde(skip_serializing_if = "Option::is_none")]
     canastillas: Option<String>,
 
+    #[serde(skip_serializing_if = "Option::is_none")]
+    canastillas_estimadas: Option<i32>,
+
     #[serde(rename = "clasificacionCalidad")]
     #[serde(skip_serializing_if = "Option::is_none")]
     clasificacion_calidad: Option<String>,
@@ -209,11 +212,25 @@ pub struct Lote {
     fecha_ingreso: Option<DateTime>,
 
     #[serde(skip_serializing_if = "Option::is_none")]
+    fecha_creacion: Option<DateTime>,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
+    fecha_estimada_llegada: Option<DateTime>,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
+    fecha_salida_patio: Option<DateTime>,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
+    fecha_ingreso_inventario: Option<DateTime>,
+
+    #[serde(rename = "fechaProceso")]
+    #[serde(skip_serializing_if = "Option::is_none")]
     fecha_proceso: Option<DateTime>,
 
     #[serde(skip_serializing_if = "Option::is_none")]
     fecha_finalizado_proceso: Option<DateTime>,
     
+    #[serde(rename = "frutaNacional")]
     #[serde(skip_serializing_if = "Option::is_none")]
     fruta_nacional: Option<f64>,
 
@@ -221,31 +238,48 @@ pub struct Lote {
     flag_is_favorita: Option<bool>,
 
     #[serde(skip_serializing_if = "Option::is_none")]
+    flag_balin_free: Option<bool>,
+
+    #[serde(rename = "historialDescarte")]
+    #[serde(skip_serializing_if = "Option::is_none")]
     historial_descarte: Option<ObjectId>,
 
+    #[serde(rename = "informeEnviado")]
     #[serde(skip_serializing_if = "Option::is_none")]
     informe_enviado: Option<bool>,
 
+    #[serde(rename = "infoSalidaDirectoNacional")]
     #[serde(skip_serializing_if = "Option::is_none")]
     info_salida_directo_nacional: Option<SalidaDirectoNacional>,
 
     #[serde(skip_serializing_if = "Option::is_none")]
+    kilos_estimados: Option<f64>,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
     kilos: Option<f64>,
 
+    #[serde(rename = "kilosReprocesados")]
     #[serde(skip_serializing_if = "Option::is_none")]
     kilos_reprocesados: Option<f64>,
 
+    #[serde(rename = "kilosVaciados")]
     #[serde(skip_serializing_if = "Option::is_none")]
     kilos_vaciados: Option<f64>,
 
+    #[serde(rename = "kilosGGN")]
     #[serde(skip_serializing_if = "Option::is_none")]
     kilos_ggn: Option<f64>,
 
+    #[serde(rename = "numeroPrecintos")]
     #[serde(skip_serializing_if = "Option::is_none")]
     numero_precintos: Option<i32>,
 
+    #[serde(rename = "numeroRemision")]
     #[serde(skip_serializing_if = "Option::is_none")]
     numero_remision: Option<String>,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
+    not_pass: Option<String>,
 
     #[serde(skip_serializing_if = "Option::is_none")]
     observaciones: Option<String>,
@@ -269,9 +303,4 @@ pub struct Lote {
     #[serde(skip_serializing_if = "Option::is_none")]
     tipo_fruta: Option<String>,
 
-    #[serde(skip_serializing_if = "Option::is_none")]
-    url_bascula: Option<String>,
-
-    #[serde(skip_serializing_if = "Option::is_none")]
-    url_informe_calidad: Option<String>,
 }
